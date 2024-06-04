@@ -27,6 +27,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Verify pytest installation
+      run: |
+        pip show pytest
+
     - name: Run Flask application
       run: |
         nohup flask run --host=0.0.0.0 --port=5000 &
