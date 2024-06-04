@@ -1,4 +1,4 @@
-name: Python Application CI
+name: Flask Application CI
 
 on:
   push:
@@ -27,10 +27,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run application
+    - name: Run Flask application
       run: |
-        nohup python app.py &
+        nohup flask run --host=0.0.0.0 --port=5000 &
 
     - name: Test application with pytest
+      env:
+        FLASK_ENV: testing
       run: |
         pytest
